@@ -70,7 +70,7 @@
     <h1>Welcome to My Data Science Models</h1>
     <p>Explore my latest GANs and deep learning models for image generation, AI, and more.</p>
     <a href="https://github.com/Vlasenko2006" class="btn">View on GitHub</a>
-   // <a href="https://your-demo-link.com" class="btn">Live Demo</a>
+    <a href="https://your-demo-link.com" class="btn">Live Demo</a>
 </div>
 
 <script>
@@ -80,16 +80,17 @@
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const binaryChars = "0101010101010101";
+    const binaryChars = "01010101";
     const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
     const drops = Array(columns).fill(1);
+    let brightness = 1.0; // Initial brightness
 
     function draw() {
         ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = "#0F0";
+        ctx.fillStyle = `rgba(0, 255, 0, ${brightness})`; // Adjust brightness
         ctx.font = fontSize + "px monospace";
 
         for (let i = 0; i < drops.length; i++) {
@@ -103,8 +104,22 @@
         }
     }
 
-    setInterval(draw, 50);
+    let interval = setInterval(draw, 50);
+
+    // Start fading after 10 seconds
+    setTimeout(() => {
+        let fadeSteps = 18; // Three fade-out steps
+        let fadeInterval = setInterval(() => {
+            brightness -= 0.05; // Reduce brightness in steps
+            if (brightness <= 0) {
+                clearInterval(fadeInterval);
+                clearInterval(interval); // Stop animation after complete fade
+            }
+        }, 1000); // Each step happens over 1 second
+    }, 3000); // Start fading after 10 seconds
+
 </script>
 
 </body>
 </html>
+
