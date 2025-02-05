@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Models</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        #canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: black;
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 10px rgba(0, 255, 0, 0.7);
+        }
+
+        p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 10px auto;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            color: white;
+            background: #28a745;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div class="content">
+    <h1>Welcome to My Data Science Models</h1>
+    <p>Explore my latest GANs and deep learning models for image generation, AI, and more.</p>
+    <a href="https://github.com/your-github-username" class="btn">View on GitHub</a>
+    <a href="https://your-demo-link.com" class="btn">Live Demo</a>
+</div>
+
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const binaryChars = "0101010101010101";
+    const fontSize = 16;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(1);
+
+    function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#0F0";
+        ctx.font = fontSize + "px monospace";
+
+        for (let i = 0; i < drops.length; i++) {
+            const text = binaryChars[Math.floor(Math.random() * binaryChars.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+
+    setInterval(draw, 50);
+</script>
+
+</body>
+</html>
