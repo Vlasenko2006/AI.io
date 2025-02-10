@@ -39,6 +39,27 @@
             border: none;
         }
 
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .play-button::after {
+            content: '\25B6';
+            font-size: 40px;
+            color: white;
+        }
+
         .btn {
             display: inline-block;
             margin: 20px;
@@ -63,8 +84,18 @@
         <h1>A short intro into my models</h1>
         <div class="video-container">
             <iframe id="videoFrame" src="https://www.youtube.com/embed/kLmQqbhKyg8" allowfullscreen></iframe>
+            <div class="play-button" id="playButton"></div>
         </div>
         <a href="https://github.com/Vlasenko2006" class="btn">View on GitHub</a>
     </div>
+    
+    <script>
+        document.getElementById('playButton').addEventListener('click', function() {
+            let iframe = document.getElementById('videoFrame');
+            let src = iframe.src.replace("&autoplay=1", "") + "?autoplay=1";
+            iframe.src = src;
+            this.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
