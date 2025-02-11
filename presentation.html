@@ -77,6 +77,48 @@
         .btn:hover {
             background: #36648B;
         }
+
+        .more-about-me {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: grey;
+            z-index: 2;
+        }
+
+        .more-about-me p {
+            font-size: 1.5rem; /* Larger font size */
+        }
+
+        .social-icons {
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            opacity: 1;
+        }
+
+        .social-icons img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .linkedin-logo {
+            filter: grayscale(100%);
+        }
+
+        .orcid-logo {
+            filter: grayscale(100%);
+        }
     </style>
 </head>
 <body>
@@ -87,6 +129,18 @@
             <div class="play-button" id="playButton"></div>
         </div>
         <a href="https://github.com/Vlasenko2006" class="btn">View on GitHub</a>
+    </div>
+
+    <div class="more-about-me">
+        <p>More about me</p>
+        <div class="social-icons">
+            <a href="http://www.linkedin.com/in/andrey-vlasenko-aa1b92224" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" class="linkedin-logo">
+            </a>
+            <a href="https://orcid.org/my-orcid?orcid=0000-0002-2680-327X" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="ORCID" class="orcid-logo">
+            </a>
+        </div>
     </div>
     
     <script>
