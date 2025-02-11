@@ -11,6 +11,11 @@
             font-family: Arial, sans-serif;
             color: white;
             text-align: center;
+            background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
         #canvas {
@@ -24,21 +29,24 @@
         }
 
         .content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
             z-index: 2;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 90%;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             text-shadow: 2px 2px 10px rgba(0, 255, 0, 0.7);
+            margin: 0;
         }
 
         p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             max-width: 600px;
             margin: 10px auto;
         }
@@ -57,7 +65,7 @@
         }
 
         .btn-left {
-            background: #8B0000; /* Grey-Red */
+            background: #8B0000;
         }
 
         .btn-left:hover {
@@ -65,7 +73,7 @@
         }
 
         .btn-right {
-            background: #4682B4; /* Grey-Blue */
+            background: #4682B4;
         }
 
         .btn-right:hover {
@@ -77,16 +85,21 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            text-align: center;
             color: grey;
             z-index: 2;
+            width: 100%;
+            text-align: center;
         }
 
         .more-about-me p {
-            font-size: 1.5rem; /* Larger font size */
+            font-size: 1.2rem;
+            margin: 0;
         }
 
         .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-top: 10px;
         }
 
@@ -102,8 +115,8 @@
         }
 
         .social-icons img {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
         }
 
         .linkedin-logo {
@@ -114,6 +127,24 @@
             filter: grayscale(100%);
         }
 
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            .social-icons img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .more-about-me p {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -123,12 +154,14 @@
 <div class="content">
     <h1>Welcome to My Data Science Page</h1>
     <p>Explore my latest deep learning models for image and text generation, forecasting, and more.</p>
-    <a href="https://github.com/Vlasenko2006" class="btn btn-left">View on GitHub</a>
-    <a href="presentation.html" class="btn btn-right">Live Demo</a>
+    <div>
+        <a href="https://github.com/Vlasenko2006" class="btn btn-left">View on GitHub</a>
+        <a href="presentation.html" class="btn btn-right">Live Demo</a>
+    </div>
 </div>
 
 <div class="more-about-me">
-    <p>More about me</p>
+    <center>More about me</center>
     <div class="social-icons">
         <a href="http://www.linkedin.com/in/andrey-vlasenko-aa1b92224" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" class="linkedin-logo">
@@ -150,13 +183,13 @@
     const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
     const drops = Array(columns).fill(1);
-    let brightness = 1.0; // Initial brightness
+    let brightness = 1.0;
 
     function draw() {
         ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = `rgba(0, 255, 0, ${brightness})`; // Adjust brightness
+        ctx.fillStyle = `rgba(0, 255, 0, ${brightness})`;
         ctx.font = fontSize + "px monospace";
 
         for (let i = 0; i < drops.length; i++) {
@@ -172,17 +205,16 @@
 
     let interval = setInterval(draw, 50);
 
-    // Start fading after 10 seconds
     setTimeout(() => {
-        let fadeSteps = 18; // Three fade-out steps
+        let fadeSteps = 18;
         let fadeInterval = setInterval(() => {
-            brightness -= 0.05; // Reduce brightness in steps
+            brightness -= 0.05;
             if (brightness <= 0) {
                 clearInterval(fadeInterval);
-                clearInterval(interval); // Stop animation after complete fade
+                clearInterval(interval);
             }
-        }, 1000); // Each step happens over .005 seconds !!!!
-    }, 3000); // Start fading after 10 seconds
+        }, 1000);
+    }, 3000);
 
 </script>
 
